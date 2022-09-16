@@ -1,27 +1,25 @@
 {
-  "name": "typescript-11ty-graphql",
+  "name": "crawl-sites",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/benjclark/typescript-11ty-graphql.git"
+    "url": "git+https://github.com/benjclark/crawl-sites.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/benjclark/typescript-11ty-graphql/issues"
+    "url": "https://github.com/benjclark/crawl-sites/issues"
   },
-  "homepage": "https://github.com/benjclark/typescript-11ty-graphql#readme",
+  "homepage": "https://github.com/benjclark/crawl-sites#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2"
-  },
-  "dependencies": {
-    "graphql": "^16.6.0",
-    "typescript": "^4.8.3"
+    "node-fetch": "^3.2.10",
+    "node-html-parser": "^6.0.0"
   }
 }
