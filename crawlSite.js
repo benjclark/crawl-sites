@@ -5,8 +5,9 @@ const fs = require('fs');
 
 const arg1 = process.argv.slice(2)[0];
 const arg2 = process.argv.slice(2)[1];
+const arg3 = process.argv.slice(2)[2];
 
-const crawlSite  = (url, siteName) => {
+const crawlSite  = (url, siteName, styleSheetPathIdentifier) => {
     const pagesVisited = new Set();
     const baseUrl = `${url}`;
     const outputFileName = `csv/crawled_${siteName}_pages-`;
@@ -34,13 +35,13 @@ const crawlSite  = (url, siteName) => {
 
     const file = createFile(outputFileName);
 
-    const crawl = function(url) {
+    const crawl = (url) => {
         if (pagesVisited.has(url)) {
             return;
         }
         pagesVisited.add(url);
 
-        request(url, function(error, response, body) {
+        request(url, (error, response, body) => {
             if (error) {
                 const shouldIgnore = ignore.some(ignoreString => {
                     return `${error}`.includes(ignoreString);
@@ -53,15 +54,17 @@ const crawlSite  = (url, siteName) => {
             }
 
             const $ = cheerio.load(body);
+
             console.log(`Crawled: ${url}`);
+
             const stylesheets = $('link[rel="stylesheet"]')
-                .map((i, el) => $(el).attr('href'))
+                .map((i, el) => {
+                    return $(el).attr('href')
+                })
                 .get()
-                .filter((stylesheetUrl) => {
-                    if (stylesheetUrl.indexOf('/static/css/') > -1) {
-                        return stylesheetUrl;
-                    }
-                });
+                .filter((stylesheetUrl) =>
+                    stylesheetUrl.includes(styleSheetPathIdentifier)
+                );
             // const javascriptBundles = $('script[src]')
             //     .map((i, el) => $(el).attr('src'))
             //     .get()
@@ -96,4 +99,4 @@ const crawlSite  = (url, siteName) => {
     crawl(baseUrl);
 }
 
-crawlSite(arg1, arg2);
+crawlSite(arg1, arg2, arg3);
