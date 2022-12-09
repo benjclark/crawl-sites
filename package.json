@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "nature": "node crawlSite.js 'https://www.nature.com' 'nature' '/static/css/'",
-    "bmc": "node crawlSite.js 'https://www.biomedcentral.com' 'bmc' '/static/app-bmc/css/'",
+    "bmc": "node crawlSite.js 'https://www.biomedcentral.com' 'bmc' '/static/app-bmc/css/'"
   },
   "repository": {
     "type": "git",
